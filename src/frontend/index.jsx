@@ -8,6 +8,37 @@ const App = () => {
   useEffect(() => {
     invoke('getText', { example: 'my-invoke-variable' }).then(setData);
   }, []);
+  
+  const fillTable = ( expenses ) => {
+    console.log(expenses)
+    if (expenses.length > 0) {
+      const rows = expenses.map((item) => ({
+        cells: [
+          {
+            content: <Textfield appearance="subtle"  spacing="compact" id="expense-description" defaultValue={item.description}/>,
+          },
+          {
+            content: <Textfield appearance="subtle"  spacing="compact" id="expense-amount" defaultValue={item.amount}/>,
+          },
+          { 
+            content: <Button appearance="subtle" iconBefore="trash" spacing="compact"/>
+          },
+        ],
+      }))
+      return rows;
+    }
+    else return null;
+  };
+  
+  const getTotal = (expenses) => {
+    let total = 0;
+    expenses.forEach(expense => {
+      total += expense.amount;
+    });
+    return total;
+  };
+  
+  
   return (
     <>
       <DynamicTable 
@@ -19,40 +50,10 @@ const App = () => {
       </Inline>
     </>
   );
-};
-
-  const fillTable = ( expenses ) => {
-    console.log(expenses)
-    if (expenses.length > 0) {
-      const rows = expenses.map((item) => ({
-        cells: [
-          {
-              content: <Textfield appearance="subtle"  spacing="compact" id="expense-description" defaultValue={item.description}/>,
-          },
-          {
-              content: <Textfield appearance="subtle"  spacing="compact" id="expense-amount" defaultValue={item.amount}/>,
-          },
-          { 
-              content: <Button appearance="subtle" iconBefore="trash" spacing="compact"/>
-          },
-        ],
-      }))
-    return rows;
-    }
-    else return null;
   };
-
-  const getTotal = (expenses) => {
-    let total = 0;
-    expenses.forEach(expense => {
-      total += expense.amount;
-    });
-    return total;
-  };
-
-
-ForgeReconciler.render(
-  <React.StrictMode>
+  
+  ForgeReconciler.render(
+    <React.StrictMode>
     <App />
   </React.StrictMode>
 );
