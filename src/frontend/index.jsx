@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import ForgeReconciler, { Text } from '@forge/react';
+import ForgeReconciler, {Button, DynamicTable, Inline, Lozenge, Text, Textfield} from '@forge/react';
+import { conferenceExpenses } from './data';
 import { invoke } from '@forge/bridge';
 
 const App = () => {
@@ -9,11 +10,31 @@ const App = () => {
   }, []);
   return (
     <>
-      <Text>Hello world!</Text>
-      <Text>{data ? data : 'Loading...'}</Text>
+      <DynamicTable 
+       caption="Expenses"
+       rows={fillTable(conferenceExpenses)} />
     </>
   );
 };
+
+  const fillTable = ( expenses ) => {
+    console.log(expenses)
+    if (expenses.length > 0) {
+      const rows = expenses.map((item) => ({
+        cells: [
+          {
+            content: <Text>{item.description}</Text>,
+          },
+          {
+            content: <Text>{item.amount}</Text>,
+          },
+        ],
+      }))
+    return rows;
+    }
+    else return null;
+  }
+
 
 ForgeReconciler.render(
   <React.StrictMode>
