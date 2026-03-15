@@ -23,10 +23,13 @@ const App = () => {
       const rows = expenses.map((item) => ({
         cells: [
           {
-            content: <Text>{item.description}</Text>,
+              content: <Textfield appearance="subtle"  spacing="compact" id="expense-description" defaultValue={item.description}/>,
           },
           {
-            content: <Text>{item.amount}</Text>,
+              content: <Textfield appearance="subtle"  spacing="compact" id="expense-amount" defaultValue={item.amount}/>,
+          },
+          { 
+              content: <Button appearance="subtle" iconBefore="trash" spacing="compact"/>
           },
         ],
       }))
