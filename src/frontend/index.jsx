@@ -8,9 +8,23 @@ const App = () => {
   useEffect(() => {
     invoke('getText', { example: 'my-invoke-variable' }).then(setData);
   }, []);
+
+  const inputRow = ({
+  cells: [
+    {
+      content: <Textfield appearance="subtle"  spacing="compact" id="expense-description" placeholder="Add an expense +"/>,
+    },
+    {
+      content: <Textfield appearance="subtle"  spacing="compact" id="expense-amount" placeholder="0"/>,
+    },
+    {
+      content: <Button appearance="subtle" spacing="compact">Add</Button>,
+    },
+  ],
+})
+
   
   const fillTable = ( expenses ) => {
-    console.log(expenses)
     if (expenses.length > 0) {
       const rows = expenses.map((item) => ({
         cells: [
@@ -25,9 +39,10 @@ const App = () => {
           },
         ],
       }))
+      rows.push(inputRow)
       return rows;
     }
-    else return null;
+    else return [inputRow];
   };
   
   const getTotal = (expenses) => {
@@ -51,7 +66,7 @@ const App = () => {
     </>
   );
   };
-  
+
   ForgeReconciler.render(
     <React.StrictMode>
     <App />
