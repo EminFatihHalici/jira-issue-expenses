@@ -11,8 +11,12 @@ const App = () => {
   return (
     <>
       <DynamicTable 
-       caption="Expenses"
-       rows={fillTable(conferenceExpenses)} />
+        caption="Expenses"
+        rows={fillTable(conferenceExpenses)} />
+      <Inline spread='space-between'>
+        <Text>Total:  ${getTotal(conferenceExpenses)}</Text>
+        <Button>Delete All</Button>
+      </Inline>
     </>
   );
 };
