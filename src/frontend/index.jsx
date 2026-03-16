@@ -21,15 +21,15 @@ const App = () => {
 
   const inputRow = ({
   cells: [
-    {
-      content: <Textfield appearance="subtle"  spacing="compact" id="expense-description" placeholder="Add an expense +"/>,
-    },
-    {
-      content: <Textfield appearance="subtle"  spacing="compact" id="expense-amount" placeholder="0"/>,
-    },
-    {
-    content: <Button appearance="subtle" spacing="compact" id="add-expense" onClick={create}>Add</Button>,
-    },
+     {
+        content: <Textfield appearance="subtle"  spacing="compact" id="expense-description" placeholder="Add an expense +" onBlur={validate}/>,
+      },
+      {
+        content: <Textfield appearance="subtle"  spacing="compact" id="expense-amount" placeholder="0" onBlur={validate}/>,
+      },
+      {
+        content: <Button appearance="subtle" spacing="compact" id="add-expense" onClick={create}>Add</Button>,
+      },
   ],
 })
 
