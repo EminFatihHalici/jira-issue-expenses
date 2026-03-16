@@ -8,4 +8,9 @@ resolver.define("getText", (req) => {
   return "Hello, world!";
 });
 
+resolver.define("create", async (req) => {
+  console.log(req.payload);
+  return "created";
+});
+
 export const handler = resolver.getDefinitions();
