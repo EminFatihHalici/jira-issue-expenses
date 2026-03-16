@@ -4,6 +4,16 @@ import { conferenceExpenses } from './data';
 import { invoke } from '@forge/bridge';
 
 const App = () => {
+  let expenseDescriptionValue = null;
+  let expenseAmountValue = null;
+
+    const validate = (data) => {
+    console.log(data)
+    if(data.target.id === "expense-description") expenseDescriptionValue = data.target.value;
+    if(data.target.id === "expense-amount") expenseAmountValue = data.target.value;
+  }
+
+
   const [data, setData] = useState(null);
   useEffect(() => {
     invoke('getText', { example: 'my-invoke-variable' }).then(setData);
@@ -56,6 +66,7 @@ const App = () => {
   const create = (data) => {
   invoke('create', {data});
 }
+
 
   
   
