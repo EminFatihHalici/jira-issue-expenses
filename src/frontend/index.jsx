@@ -64,8 +64,9 @@ const App = () => {
   };
 
   const create = (data) => {
-  invoke('create', {data});
-}
+    invoke('create', {data: data,expenseDescription: expenseDescriptionValue, expenseAmount: expenseAmountValue}).then(setData);
+  }
+
 
 
   
