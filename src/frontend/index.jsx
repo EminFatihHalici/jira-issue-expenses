@@ -18,7 +18,7 @@ const App = () => {
       content: <Textfield appearance="subtle"  spacing="compact" id="expense-amount" placeholder="0"/>,
     },
     {
-      content: <Button appearance="subtle" spacing="compact">Add</Button>,
+    content: <Button appearance="subtle" spacing="compact" id="add-expense" onClick={create}>Add</Button>,
     },
   ],
 })
@@ -52,6 +52,11 @@ const App = () => {
     });
     return total;
   };
+
+  const create = (data) => {
+  invoke('create', {data});
+}
+
   
   
   return (
